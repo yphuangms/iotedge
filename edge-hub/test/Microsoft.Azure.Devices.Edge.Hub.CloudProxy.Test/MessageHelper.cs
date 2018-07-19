@@ -58,8 +58,14 @@ namespace Microsoft.Azure.Devices.Edge.Hub.CloudProxy.Test
                 EventData eventData = events.FirstOrDefault(m =>
                     m.Properties.ContainsKey("id") &&
                     m.Properties["id"] as string == message.Properties["id"]);
-                if (eventData == null || !message.Body.SequenceEqual(eventData.Body.Array))
+                if (eventData == null)
                 {
+                    Console.WriteLine($"did not find message id {message.Properties["id"]}");
+                    return false;
+                }
+                else if (!message.Body.SequenceEqual(eventData.Body.Array))
+                {
+                    Console.WriteLine($"Event/Message body did not match {message.Properties["id"]}");
                     return false;
                 }
             }

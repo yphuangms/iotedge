@@ -206,6 +206,7 @@ namespace Microsoft.Azure.Devices.Edge.Hub.CloudProxy.Test
                 messagesFound = MessageHelper.CompareMessagesAndEventData(sentMessages, cloudMessages);
                 if (messagesFound)
                 {
+                    Console.WriteLine($"Not all messages found, retry {i}");
                     break;
                 } 
                 await Task.Delay(TimeSpan.FromSeconds(20));
