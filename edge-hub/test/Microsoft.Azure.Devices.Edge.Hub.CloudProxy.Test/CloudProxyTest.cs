@@ -27,7 +27,7 @@ namespace Microsoft.Azure.Devices.Edge.Hub.CloudProxy.Test
     {
         static readonly TimeSpan ClockSkew = TimeSpan.FromMinutes(5);
 
-        static readonly int EventHubMessageReceivedRetry = 5;
+        static readonly int EventHubMessageReceivedRetry = 7;
 
         [Fact]
         [TestPriority(401)]
