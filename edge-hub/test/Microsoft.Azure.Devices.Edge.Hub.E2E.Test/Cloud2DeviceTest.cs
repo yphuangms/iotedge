@@ -43,7 +43,7 @@ namespace Microsoft.Azure.Devices.Edge.Hub.E2E.Test
                 ITransportSettings[] settings = this.GetTransportSettings(transportType);
                 deviceClient = DeviceClient.CreateFromConnectionString(deviceConnectionString, settings);
                 // Explicitly wait for newly created device is ready to use.
-                await Task.Delay(TimeSpan.FromSeconds(30));
+                await Task.Delay(TimeSpan.FromSeconds(60));
 
                 // Dummy ReceiveAsync to ensure mqtt subscription registration before SendAsync() is called on service client.
                 await deviceClient.ReceiveAsync(TimeSpan.FromSeconds(2));

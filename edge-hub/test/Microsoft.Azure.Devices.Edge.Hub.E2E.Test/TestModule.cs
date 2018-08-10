@@ -24,6 +24,9 @@ namespace Microsoft.Azure.Devices.Edge.Hub.E2E.Test
         public static async Task<TestModule> CreateAndConnect(string connectionString, ITransportSettings[] settings)
         {
             ModuleClient moduleClient = ModuleClient.CreateFromConnectionString(connectionString, settings);
+            // Explicitly wait for newly created device is ready to use.
+            await Task.Delay(TimeSpan.FromSeconds(30));
+
             await moduleClient.OpenAsync();
             return new TestModule(moduleClient);
         }
