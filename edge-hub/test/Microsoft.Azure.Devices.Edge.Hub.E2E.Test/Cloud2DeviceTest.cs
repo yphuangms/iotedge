@@ -42,6 +42,9 @@ namespace Microsoft.Azure.Devices.Edge.Hub.E2E.Test
 
                 ITransportSettings[] settings = this.GetTransportSettings(transportType);
                 deviceClient = DeviceClient.CreateFromConnectionString(deviceConnectionString, settings);
+                // Explicitly wait for newly created device is ready to use.
+                await Task.Delay(TimeSpan.FromSeconds(30));
+
                 // Dummy ReceiveAsync to ensure mqtt subscription registration before SendAsync() is called on service client.
                 await deviceClient.ReceiveAsync(TimeSpan.FromSeconds(2));
 
@@ -75,6 +78,9 @@ namespace Microsoft.Azure.Devices.Edge.Hub.E2E.Test
 
                 ITransportSettings[] settings = this.GetTransportSettings();
                 deviceClient = DeviceClient.CreateFromConnectionString(deviceConnectionString, settings);
+                // Explicitly wait for newly created device is ready to use.
+                await Task.Delay(TimeSpan.FromSeconds(30));
+
                 // Dummy ReceiveAsync to ensure mqtt subscription registration before SendAsync() is called on service client.
                 await deviceClient.ReceiveAsync(TimeSpan.FromSeconds(1));
                 await deviceClient.CloseAsync();
@@ -115,6 +121,9 @@ namespace Microsoft.Azure.Devices.Edge.Hub.E2E.Test
 
                 ITransportSettings[] settings = this.GetTransportSettings();
                 deviceClient = DeviceClient.CreateFromConnectionString(deviceConnectionString, settings);
+                // Explicitly wait for newly created device is ready to use.
+                await Task.Delay(TimeSpan.FromSeconds(30));
+
                 // Dummy ReceiveAsync to ensure mqtt subscription registration before SendAsync() is called on service client.
                 await deviceClient.ReceiveAsync(TimeSpan.FromSeconds(1));
                 await deviceClient.CloseAsync();

@@ -103,6 +103,9 @@ namespace Microsoft.Azure.Devices.Edge.Hub.E2E.Test
 
                 (string deviceId, string receiverModuleConnectionString) = await RegistryManagerHelper.CreateDevice("methodTest", iotHubConnectionString, rm);
                 receiver = DeviceClient.CreateFromConnectionString(receiverModuleConnectionString, transportSettings);
+                // Explicitly wait for newly created device is ready to use.
+                await Task.Delay(TimeSpan.FromSeconds(30));
+
                 await receiver.OpenAsync();
                 await receiver.SetMethodHandlerAsync("poke", MethodHandler, null);
 
