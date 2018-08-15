@@ -93,7 +93,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1ABF19EE-768
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "binding", "binding", "{B8B03013-8D6E-4D4E-9914-33D55074DEC8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Azure.Devices.Edge.Functions.Binding", "edge-modules\functions\binding\src\Microsoft.Azure.Devices.Edge.Functions.Binding\Microsoft.Azure.Devices.Edge.Functions.Binding.csproj", "{63120FDB-92DD-4E02-B77A-E4B51999A0BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Azure.WebJobs.Extensions.EdgeHub", "edge-modules\functions\binding\src\Microsoft.Azure.Devices.Edge.Functions.Binding\Microsoft.Azure.WebJobs.Extensions.EdgeHub.csproj", "{63120FDB-92DD-4E02-B77A-E4B51999A0BB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{33B7755E-D6F9-4F9B-86A8-5DFE9FEE674E}"
 	ProjectSection(SolutionItems) = preProject

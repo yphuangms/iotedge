@@ -1,11 +1,9 @@
 // Copyright (c) Microsoft. All rights reserved.
 
-namespace Microsoft.Azure.Devices.Edge.Functions.Binding.Config
+namespace Microsoft.Azure.WebJobs.Extensions.EdgeHub.Config
 {
     using System;
     using Microsoft.Azure.WebJobs;
-    using Microsoft.Azure.WebJobs.Host;
-    using Microsoft.Azure.WebJobs.Host.Config;
 
     /// <summary>
     /// Extension methods for EdgeHub integration
@@ -13,20 +11,19 @@ namespace Microsoft.Azure.Devices.Edge.Functions.Binding.Config
     public static class EdgeHubHostConfigExtensions
     {
         /// <summary>
-        /// Enables use of EdgeHub binding extensions
+        /// Adds EdgeHub binding extensions <see cref="IWebJobsBuilder"/>.
         /// </summary>
-        /// <param name="config">The <see cref="JobHostConfiguration"/> to configure.</param>
-        public static void UseEdgeHub(this JobHostConfiguration config)
+        /// <param name="builder">The <see cref="IWebJobsBuilder"/> to configure.</param>
+        public static IWebJobsBuilder AddEdge(this IWebJobsBuilder builder)
         {
-            if (config == null)
+            if (builder == null)
             {
-                throw new ArgumentNullException(nameof(config));
+                throw new ArgumentNullException(nameof(builder));
             }
-            
-            var extensions = config.GetService<IExtensionRegistry>();
 
-            var extensionConfig = new EdgeHubExtensionConfigProvider();
-            extensions.RegisterExtension<IExtensionConfigProvider>(extensionConfig);
+            builder.AddExtension<EdgeHubExtensionConfigProvider>();
+
+            return builder;
         }
     }
 }

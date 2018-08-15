@@ -1,10 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Microsoft.Azure.Devices.Edge.Functions.BindingExtension</AssemblyName>
+    <AssemblyName>Microsoft.Azure.WebJobs.Extensions.EdgeHub</AssemblyName>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <Configurations>Debug;Release;CodeCoverage</Configurations>
+    <Version>1.0.0-beta2</Version>
   </PropertyGroup>
 
   <!--
@@ -21,8 +22,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.Devices.Client" Version="1.17.0" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions" Version="3.0.0-beta3" />
+    <PackageReference Include="Microsoft.Azure.Devices.Client" Version="1.17.1" />
+    <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.0.0-beta7-11412" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,9 +38,5 @@
       <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\edge-util\src\Microsoft.Azure.Devices.Edge.Util\Microsoft.Azure.Devices.Edge.Util.csproj" />
   </ItemGroup>
 </Project>

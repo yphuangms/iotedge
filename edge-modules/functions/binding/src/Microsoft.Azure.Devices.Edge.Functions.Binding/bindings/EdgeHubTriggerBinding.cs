@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 
-namespace Microsoft.Azure.Devices.Edge.Functions.Binding.Bindings
+namespace Microsoft.Azure.WebJobs.Extensions.EdgeHub
 {
     using System;
     using System.Collections.Generic;
@@ -9,7 +9,6 @@ namespace Microsoft.Azure.Devices.Edge.Functions.Binding.Bindings
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.Azure.Devices.Client;
-    using Microsoft.Azure.WebJobs.Extensions.Bindings;
     using Microsoft.Azure.WebJobs.Host.Bindings;
     using Microsoft.Azure.WebJobs.Host.Executors;
     using Microsoft.Azure.WebJobs.Host.Listeners;
@@ -46,7 +45,7 @@ namespace Microsoft.Azure.Devices.Edge.Functions.Binding.Bindings
                 throw new NotSupportedException("Message is required.");
             }
 
-            IValueBinder valueBinder = new EdgeHubValueBinder(this.parameter, triggerValue);
+            IValueBinder valueBinder = new EdgeHubValueBinder(this.parameter.ParameterType, triggerValue);
             return Task.FromResult<ITriggerData>(new TriggerData(valueBinder, this.GetBindingData(triggerValue)));
         }
 
@@ -93,22 +92,30 @@ namespace Microsoft.Azure.Devices.Edge.Functions.Binding.Bindings
             }
         }
 
-        class EdgeHubValueBinder : ValueBinder
+        class EdgeHubValueBinder : IValueBinder
         {
             readonly object value;
+            readonly Type type;
 
-            public EdgeHubValueBinder(ParameterInfo parameter, Message value)
-                : base(parameter.ParameterType)
+            public EdgeHubValueBinder(Type type, Message value)
             {
+                this.type = type;
                 this.value = value;
             }
 
-            public override Task<object> GetValueAsync()
+            public Type Type => this.type;
+
+            public Task<object> GetValueAsync()
             {
                 return Task.FromResult(this.value);
             }
 
-            public override string ToInvokeString()
+            public Task SetValueAsync(object value, CancellationToken cancellationToken)
+            {
+                return Task.FromResult(true);
+            }
+
+            public string ToInvokeString()
             {
                 return "Message";
             }

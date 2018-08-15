@@ -1,19 +1,18 @@
 // Copyright (c) Microsoft. All rights reserved.
 
-namespace Microsoft.Azure.Devices.Edge.Functions.Binding.Config
+namespace Microsoft.Azure.WebJobs.Extensions.EdgeHub.Config
 {
     using System;
     using Microsoft.Azure.Devices.Client;
-    using Microsoft.Azure.Devices.Edge.Functions.Binding.Bindings;
-    using Microsoft.Azure.WebJobs.Host;
+    using Microsoft.Azure.WebJobs.Description;
     using Microsoft.Azure.WebJobs.Host.Config;
-    using Microsoft.Azure.WebJobs.Host.Triggers;
     using Newtonsoft.Json;
 
     /// <summary>
     /// Extension configuration provider used to register EdgeHub triggers and binders
     /// </summary>
-    public class EdgeHubExtensionConfigProvider : IExtensionConfigProvider
+    [Extension("EdgeHub")]
+    class EdgeHubExtensionConfigProvider : IExtensionConfigProvider
     {
         public void Initialize(ExtensionConfigContext context)
         {
@@ -22,14 +21,11 @@ namespace Microsoft.Azure.Devices.Edge.Functions.Binding.Config
                 throw new ArgumentNullException(nameof(context));
             }
 
-            var extensions = context.Config.GetService<IExtensionRegistry>();
+            var bindingProvider = new EdgeHubTriggerBindingProvider();
+            context.AddBindingRule<EdgeHubTriggerAttribute>()
+                .BindToTrigger(bindingProvider);
 
-            // register trigger binding provider
-            var triggerBindingProvider = new EdgeHubTriggerBindingProvider();
-            extensions.RegisterExtension<ITriggerBindingProvider>(triggerBindingProvider);
-
-            extensions.RegisterBindingRules<EdgeHubAttribute>();
-            FluentBindingRule<EdgeHubAttribute> rule = context.AddBindingRule<EdgeHubAttribute>();
+            var rule = context.AddBindingRule<EdgeHubAttribute>();
             rule.BindToCollector<Message>(typeof(EdgeHubCollectorBuilder));
 
             context.AddConverter<Message, string>(this.MessageConverter);
