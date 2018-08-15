@@ -98,7 +98,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{33B7
 		edge-modules\functions\samples\host.json = edge-modules\functions\samples\host.json
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EdgeHubTrigger-CSharp", "EdgeHubTrigger-CSharp", "{AFA4A92F-62AA-4EA9-9AE2-70E7EC5FCB12}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EdgeHubTrigger-CSX", "EdgeHubTrigger-CSX", "{AFA4A92F-62AA-4EA9-9AE2-70E7EC5FCB12}"
 	ProjectSection(SolutionItems) = preProject
 		edge-modules\functions\samples\EdgeHubTrigger-CSharp\function.json = edge-modules\functions\samples\EdgeHubTrigger-CSharp\function.json
 		edge-modules\functions\samples\EdgeHubTrigger-CSharp\run.csx = edge-modules\functions\samples\EdgeHubTrigger-CSharp\run.csx
@@ -165,6 +165,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessagesAnalyzer", "edge-modules\MessagesAnalyzer\MessagesAnalyzer.csproj", "{047DC795-A159-4BFF-AC0F-4DCE51A79C2C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Azure.WebJobs.Extensions.EdgeHub", "edge-modules\functions\binding\src\Microsoft.Azure.WebJobs.Extensions.EdgeHub\Microsoft.Azure.WebJobs.Extensions.EdgeHub.csproj", "{0D5C5996-7414-47D2-AF0F-C68E0E3F3AA4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EdgeHubTrigger-CSharp", "EdgeHubTrigger-CSharp", "{C3BDC9FA-B7D8-44F3-970F-D24281335F46}"
+	ProjectSection(SolutionItems) = preProject
+		EdgeHubSamples.cs = EdgeHubSamples.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -469,6 +474,7 @@ Global
 		{54771470-860C-4853-9318-6DB4EA76B595} = {578D5330-2F72-44C6-9DB5-C93B3F42C473}
 		{047DC795-A159-4BFF-AC0F-4DCE51A79C2C} = {578D5330-2F72-44C6-9DB5-C93B3F42C473}
 		{0D5C5996-7414-47D2-AF0F-C68E0E3F3AA4} = {1ABF19EE-7689-4EE3-A099-16111A8F16F4}
+		{C3BDC9FA-B7D8-44F3-970F-D24281335F46} = {33B7755E-D6F9-4F9B-86A8-5DFE9FEE674E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D71830F5-3AF5-46B4-8A9E-1DCE4F2253AC}

@@ -22,24 +22,13 @@ namespace Microsoft.Azure.WebJobs.Extensions.EdgeHub.Config
             }
 
             var bindingProvider = new EdgeHubTriggerBindingProvider();
-            context.AddBindingRule<EdgeHubTriggerAttribute>()
-                .BindToTrigger(bindingProvider);
+            var rule = context.AddBindingRule<EdgeHubTriggerAttribute>();
+            rule.AddConverter<Message, string>(msg => JsonConvert.SerializeObject(msg));
+            rule.AddConverter<string, Message>(str => JsonConvert.DeserializeObject<Message>(str));
+            rule.BindToTrigger(bindingProvider);
 
-            var rule = context.AddBindingRule<EdgeHubAttribute>();
-            rule.BindToCollector<Message>(typeof(EdgeHubCollectorBuilder));
-
-            context.AddConverter<Message, string>(this.MessageConverter);
-            context.AddConverter<string, Message>(this.ConvertToMessage);
-        }
-
-        Message ConvertToMessage(string str)
-        {
-            return JsonConvert.DeserializeObject<Message>(str);
-        }
-
-        string MessageConverter(Message msg)
-        {
-            return JsonConvert.SerializeObject(msg);
+            var rule2 = context.AddBindingRule<EdgeHubAttribute>();
+            rule2.BindToCollector<Message>(typeof(EdgeHubCollectorBuilder));
         }
     }
 }
