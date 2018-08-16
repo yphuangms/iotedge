@@ -168,7 +168,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Azure.WebJobs.Ext
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EdgeHubTrigger-CSharp", "EdgeHubTrigger-CSharp", "{C3BDC9FA-B7D8-44F3-970F-D24281335F46}"
 	ProjectSection(SolutionItems) = preProject
-		EdgeHubSamples.cs = EdgeHubSamples.cs
+		edge-modules\functions\samples\EdgeHubTrigger-Csharp\EdgeHubSamples.cs = edge-modules\functions\samples\EdgeHubTrigger-Csharp\EdgeHubSamples.cs
 	EndProjectSection
 EndProject
 Global

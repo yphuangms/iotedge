@@ -35,13 +35,6 @@ namespace Functions.Samples
             }
         }
 
-        public static async Task FilterStringAndSend(
-            [EdgeHubTrigger("input1")] string messageReceived,
-            [EdgeHub(OutputName = "output1")] IAsyncCollector<Message> output)
-        {
-            string s = "";
-        }
-
         /// <summary>
         ///Body:
         ///{
