@@ -129,7 +129,7 @@ pack()
     fi
     
     echo "Packing for '$path'"
-    $DOTNET_ROOT_PATH/dotnet pack $path
+    $DOTNET_ROOT_PATH/dotnet pack $path -o $PUBLISH_FOLDER
 }
 
 publish_project()
