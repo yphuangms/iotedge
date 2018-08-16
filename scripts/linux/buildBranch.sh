@@ -118,6 +118,20 @@ publish_files()
     cp -rv $src $dst
 }
 
+pack()
+{
+    local name="$1"
+
+    local path=$(find $ROOT_FOLDER -type f -name $name.csproj)
+    if [ -z "$path" ]; then
+        echo "Could not find project named '$name'"
+        RES=1
+    fi
+    
+    echo "Packing for '$path'"
+    $DOTNET_ROOT_PATH/dotnet pack $path
+}
+
 publish_project()
 {
     local type="$1"
@@ -214,5 +228,6 @@ fi
 
 publish_quickstart linux-arm
 publish_quickstart linux-x64
+pack "Microsoft.Azure.Devices.Edge.Functions.Binding"
 
 exit $RES
